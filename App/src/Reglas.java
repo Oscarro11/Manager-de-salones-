@@ -32,4 +32,13 @@ public class Reglas {
     public static boolean verificarPresupuesto(Salon salon_deseado, int duracion_evento, double pago_inicial){
         return pago_inicial < (salon_deseado.getCosto_reserva() * duracion_evento)/2;
     }
+
+    public static boolean verificarVIP(Salon salon_deseado, boolean reserva_vip){
+        if (salon_deseado.getTamano() == "grande" && !reserva_vip){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

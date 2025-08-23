@@ -1,14 +1,14 @@
 public class Reserva {
     private String nombre;
-    private boolean cliente_vip;
+    private boolean status_VIP;
     private int hora_inicio;
     private int duracion_evento;
     private int asistentes;
     private double pago_inicial;
 
-    public Reserva(String nombre, boolean cliente_vip, int hora_inicio, int duracion_evento, int asistentes, double pago_inicial){
+    public Reserva(String nombre, boolean status_VIP, int hora_inicio, int duracion_evento, int asistentes, double pago_inicial){
         this.nombre = nombre;
-        this.cliente_vip = cliente_vip;
+        this.status_VIP = status_VIP;
         this.hora_inicio = hora_inicio;
         this.duracion_evento = duracion_evento;
         this.asistentes = asistentes;
@@ -18,8 +18,8 @@ public class Reserva {
     public String getNombre(){
         return this.nombre;
     }
-    public boolean getCliente_vip(){
-        return this.cliente_vip;
+    public boolean getStatus_VIP(){
+        return this.status_VIP;
     }
     public int getHora_inicio() {
         return hora_inicio;
@@ -37,8 +37,8 @@ public class Reserva {
     public void setAsistentes(int asistentes) {
         this.asistentes = asistentes;
     }
-    public void setCliente_vip(boolean cliente_vip) {
-        this.cliente_vip = cliente_vip;
+    public void setStatus_VIP(boolean status_VIP) {
+        this.status_VIP = status_VIP;
     }
     public void setDuracion_evento(int duracion_evento) {
         this.duracion_evento = duracion_evento;

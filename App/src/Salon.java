@@ -28,14 +28,14 @@ public class Salon {
     public void ActualizarDisponibilidad(int nueva_hora, int tiempo_reserva){
         int nueva_hora_a_asignar = nueva_hora + tiempo_reserva;
         if (nueva_hora_a_asignar > 24){
-            setHora_disponible(24);
+            setHora_disponible(25);
         }
         else{
             setHora_disponible(nueva_hora_a_asignar);
         }
     }
 
-    Salon(String nombre, String tamano, int costo_reserva, int tiempo_maximo_reserva){
+    Salon(String nombre, String tamano, double costo_reserva, int tiempo_maximo_reserva){
         this.nombre = nombre;
         this.tamano = tamano;
         this.costo_reserva = costo_reserva;
