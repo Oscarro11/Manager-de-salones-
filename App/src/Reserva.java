@@ -1,47 +1,49 @@
 public class Reserva {
     private String nombre;
-    private boolean status_VIP;
+    private boolean vip;
     private int hora_inicio;
-    private int duracion_evento;
+    private int duracion;
     private int asistentes;
-    private double pago_inicial;
+    private double deposito;
 
-    public Reserva(String nombre, boolean status_VIP, int hora_inicio, int duracion_evento, int asistentes, double pago_inicial){
-        this.nombre = nombre;
-        this.status_VIP = status_VIP;
-        this.hora_inicio = hora_inicio;
-        this.duracion_evento = duracion_evento;
-        this.asistentes = asistentes;
-        this.pago_inicial = pago_inicial;
+    public Reserva(String nombre, boolean vip, int hora_inicio, int duracion, int asistentes, double deposito){
+        setNombre(nombre);
+        setVip(vip);
+        setHora_inicio(hora_inicio);
+        setDuracion(duracion);
+        setAsistentes(asistentes);
+        setDeposito(deposito);
     }
+    
 
-    public String getNombre(){
-        return this.nombre;
+    public int getAsistentes() {
+        return asistentes;
     }
-    public boolean getStatus_VIP(){
-        return this.status_VIP;
+    public double getDeposito() {
+        return deposito;
+    }
+    public int getDuracion() {
+        return duracion;
     }
     public int getHora_inicio() {
         return hora_inicio;
     }
-    public int getAsistentes() {
-        return asistentes;
+    public String getNombre() {
+        return nombre;
     }
-    public int getDuracion_evento() {
-        return duracion_evento;
+    public boolean getVip(){
+        return vip;
     }
-    public double getPago_inicial() {
-        return pago_inicial;
-    }
+
 
     public void setAsistentes(int asistentes) {
         this.asistentes = asistentes;
     }
-    public void setStatus_VIP(boolean status_VIP) {
-        this.status_VIP = status_VIP;
+    public void setDeposito(double deposito) {
+        this.deposito = deposito;
     }
-    public void setDuracion_evento(int duracion_evento) {
-        this.duracion_evento = duracion_evento;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
     public void setHora_inicio(int hora_inicio) {
         this.hora_inicio = hora_inicio;
@@ -49,8 +51,8 @@ public class Reserva {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void setPago_inicial(double pago_inicial) {
-        this.pago_inicial = pago_inicial;
+    public void setVip(boolean vip) {
+        this.vip = vip;
     }
     
 }
