@@ -14,6 +14,16 @@ public class Salon {
         AsignarPreset(tamano);
     }
 
+    public void ActualizarDisponibilidad(int nueva_hora, int duracion){
+        int nueva_hora_desocupada = nueva_hora + duracion;
+        if (nueva_hora_desocupada >= 24){
+            setHora_desocupada(24);
+        }
+        else{
+            setHora_desocupada(nueva_hora_desocupada);
+        }
+    }
+
     private void AsignarPreset(String tamano){
         int capacidad;
         switch (tamano) {
@@ -35,7 +45,7 @@ public class Salon {
         }
         setMax_capacidad(capacidad);
     }
-    
+
 
     public double getCosto_hora() {
         return costo_hora;

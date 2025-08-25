@@ -53,6 +53,10 @@ public class ListaSalones {
         }        
     }
 
+    public void ActualizarDisponibilidadSalon(String nombre_salon, int nueva_hora, int duracion){
+        BuscarSalon(nombre_salon).ActualizarDisponibilidad(nueva_hora, duracion);
+    }
+
 
     public String getTamanoSalon(String nombre_salon){
         return BuscarSalon(nombre_salon).getTamano();
