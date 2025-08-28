@@ -1,6 +1,6 @@
 public class Reglas {
     public static boolean VerificarVIP(String tamano, boolean vip){
-        return !(tamano == "grande" && !vip);
+        return !(tamano.equals("grande") && !vip);
     }
 
     public static boolean VerificarCapacidad(String tamano, int capacidad, int asistentes){
@@ -22,7 +22,7 @@ public class Reglas {
             cuota = 0;
                 break;
         }
-        return asistentes >= cuota;
+        return asistentes >= cuota && asistentes <= capacidad;
     }
 
     public static boolean VerificarHorario(int hora_disponible, int hora_evento){

@@ -5,24 +5,29 @@ public class ListaEspera {
     public ListaEspera(int capacidad){
         lista_reservas = new Reserva[capacidad];
         lista_disponibles = new boolean[capacidad];
+        
+        for (int i=0; i<capacidad; i++){
+            lista_disponibles[i] = true;
+        }
+        
     }
 
     public boolean VerificarMaxCapacidad(){
         for (boolean ocupado: lista_disponibles){
             if (ocupado){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public boolean VerificarVacio(){
         for (boolean ocupado: lista_disponibles){
             if (!ocupado){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public boolean AnadirReserva(String nombre, boolean vip, int hora_inicio, int duracion, int asistentes, double deposito){
@@ -30,6 +35,7 @@ public class ListaEspera {
             for (int i=0; i<lista_disponibles.length; i++){
                 if (lista_disponibles[i]){
                     lista_reservas[i] = new Reserva(nombre, vip, hora_inicio, duracion, asistentes, deposito);
+                    lista_disponibles[i] = false;
                     return true;
                 }
             }
@@ -38,9 +44,11 @@ public class ListaEspera {
     }
 
     private Reserva BuscarReserva(String nombre_reserva){
-        for (Reserva reserva_a_comparar: lista_reservas){
-            if (reserva_a_comparar.getNombre() == nombre_reserva){
-                return reserva_a_comparar;
+        for (int i=0; i<lista_reservas.length; i++){
+            if (!lista_disponibles[i]){
+                if (lista_reservas[i].getNombre().equals(nombre_reserva)){
+                    return lista_reservas[i];
+                }
             }
         }
         return null;
@@ -53,7 +61,7 @@ public class ListaEspera {
     public void QuitarReserva(String nombre_reserva){
         for (int i=0; i<lista_reservas.length; i++){
             if (!lista_disponibles[i]){
-                if (lista_reservas[i].getNombre() == nombre_reserva){
+                if (lista_reservas[i].getNombre().equals(nombre_reserva)){
                     lista_reservas[i] = null;
                     lista_disponibles[i] = true;
                     break;
@@ -67,7 +75,7 @@ public class ListaEspera {
         String mensaje = "Las reservas de los siguientes eventos se encuentran en lista de espera:\n";
         for (int i=0; i<lista_disponibles.length; i++){
             if (!lista_disponibles[i]){
-                mensaje += "- " + lista_reservas[i].getNombre();
+                mensaje += "- " + lista_reservas[i].getNombre() + "\n";
                 cont_existe++;
             }
         }

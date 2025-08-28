@@ -42,6 +42,43 @@ public class Controlador {
         }
     }
 
+    public boolean VerificarMaxCapacidadEspera(){
+        return lista_espera.VerificarMaxCapacidad();
+    }
+
+    public boolean VerificarMaxCapacidadSalon(String tamano_salon){
+        boolean salon_al_maximo = true;
+        switch (tamano_salon) {
+            case "pequeno":
+                salon_al_maximo = lista_salon_pequeno.VerificarMaxCapacidad();
+                break;
+
+            case "mediano":
+                salon_al_maximo = lista_salon_mediano.VerificarMaxCapacidad();
+                break;
+
+            case "grande":
+                salon_al_maximo = lista_salon_grande.VerificarMaxCapacidad();
+                break;
+        
+            default:
+                break;
+        }
+        return salon_al_maximo;
+    }
+
+    public boolean SalonExiste(String nombre_salon){
+        return (lista_salon_pequeno.SalonExiste(nombre_salon) || lista_salon_mediano.SalonExiste(nombre_salon) || lista_salon_grande.SalonExiste(nombre_salon));
+    }
+
+    public boolean ReservaExiste(String nombre_reserva){
+        return lista_espera.ReservaExiste(nombre_reserva);
+    }
+
+    public boolean HayReservas(){
+        return lista_espera.VerificarVacio();
+    }
+
     public boolean AnadirReserva(String nombre, boolean vip, int hora_inicio, int duracion, int asistentes, double deposito){
         if (lista_espera.VerificarMaxCapacidad()){
             return false;
@@ -80,10 +117,10 @@ public class Controlador {
         if (!Reglas.VerificarHorario(lista_salon_actual.getHoraSalon(nombre_salon), lista_espera.getHoraReserva(nombre_reserva))){
             return 3;
         }
-        if (Reglas.VerificarDuracion(lista_salon_actual.getMaxTiempoSalon(nombre_salon), lista_espera.getDuracionReserva(nombre_reserva))){
+        if (!Reglas.VerificarDuracion(lista_salon_actual.getMaxTiempoSalon(nombre_salon), lista_espera.getDuracionReserva(nombre_reserva))){
             return 4;
         }
-        if (Reglas.VerificarDeposito(lista_salon_actual.getCostoSalon(nombre_salon), lista_espera.getDuracionReserva(nombre_reserva), lista_espera.getDepositoReserva(nombre_reserva))){
+        if (!Reglas.VerificarDeposito(lista_salon_actual.getCostoSalon(nombre_salon), lista_espera.getDuracionReserva(nombre_reserva), lista_espera.getDepositoReserva(nombre_reserva))){
             return 5;
         }
 
@@ -107,9 +144,34 @@ public class Controlador {
                 lista_salon_actual = lista_salon_grande;
             }
 
-            lista_salon_actual.ActualizarDisponibilidadSalon(nombre_salon, codigo_error, codigo_error);
+            lista_salon_actual.ActualizarDisponibilidadSalon(nombre_salon, lista_espera.getHoraReserva(nombre_reserva), lista_espera.getDuracionReserva(nombre_reserva));
             lista_espera.QuitarReserva(nombre_reserva);
             return 0;
         }
+    }
+
+    public String MostrarReservas(){
+        return lista_espera.MostrarReservas();
+    }
+
+    public String MostrarSalones(String tamano_salon){
+        String mensaje = "";
+        switch (tamano_salon) {
+            case "pequeno":
+                mensaje = lista_salon_pequeno.MostrarSalones();
+                break;
+                    
+            case "mediano":
+                mensaje = lista_salon_mediano.MostrarSalones();
+                break;
+
+            case "grande":
+                mensaje = lista_salon_grande.MostrarSalones();
+                break;
+
+            default:
+                break;
+        }
+        return mensaje;
     }
 }

@@ -28,7 +28,7 @@ public class ListaSalones {
 
     private Salon BuscarSalon(String nombre_salon){
         for (int i=0; i<pos_ingresar_salon; i++){
-            if (lista_salones[i].getNombre() == nombre_salon){
+            if (lista_salones[i].getNombre().equals(nombre_salon)){
                 return lista_salones[i];
             }
         }
@@ -46,7 +46,7 @@ public class ListaSalones {
         }
 
         if (VerificarVacio()){
-            return "No hay salones disponibles de tamano " + tamano;
+            return "No hay salones disponibles de tamano " + tamano + "\n";
         }
         else{
             return mensaje;
